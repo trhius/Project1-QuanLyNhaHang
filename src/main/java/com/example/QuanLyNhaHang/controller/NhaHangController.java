@@ -1,8 +1,11 @@
 package com.example.QuanLyNhaHang.controller;
 
 import com.example.QuanLyNhaHang.entity.MonAn;
+import com.example.QuanLyNhaHang.entity.User;
+import com.example.QuanLyNhaHang.repository.UserRepository;
 import com.example.QuanLyNhaHang.service.NhaHangService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -56,5 +59,28 @@ public class NhaHangController {
     public String deleteMonAn(@PathVariable Long id){
         nhaHangService.deleteMonAn(id);
         return "redirect:/monans";
+    }
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("/home")
+    public String viewHomePage(){
+        return "home";
+    }
+
+    @GetMapping("/register")
+    public String showRegisterForm(Model model){
+        model.addAttribute("user", new User());
+        return "register_form";
+    }
+
+    @PostMapping("/process_register")
+    public String processRegister(User user){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+        userRepository.save(user);
+        return "register_success";
     }
 }

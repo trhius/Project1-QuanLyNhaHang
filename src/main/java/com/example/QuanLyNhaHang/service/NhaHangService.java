@@ -10,4 +10,5 @@ public interface NhaHangService {
     MonAn getMonAnById(Long id);
     MonAn updateMonAn(MonAn monAn);
     void deleteMonAn(Long id);
+
 }

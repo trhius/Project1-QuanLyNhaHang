@@ -66,6 +66,7 @@
             <th class="text-center">Loại món ăn</th>
             <th class="text-center">Đồ chay</th>
             <th class="text-center">Đơn giá</th>
+            <th class="text-center">Chức năng</th>
           </tr>
           </thead>
 
@@ -77,8 +78,8 @@
             <td th:text="${monan.doChay}" class="align-middle"></td>
             <td th:text="${monan.donGia}" class="align-middle"></td>
             <td>
-              <a th:href="@{monans/edit/{id}(id=${doanvien.id})}" class="btn btn-primary" style="color:white">Sửa</a>
-              <a th:href="@{monans/{id}(id=${doanvien.id})}" class="btn btn-danger" style="color:white">Xoá</a>
+              <a th:href="@{monans/edit/{id}(id=${monan.id})}" class="btn btn-primary" style="color:white">Sửa</a>
+              <a th:href="@{monans/{id}(id=${monan.id})}" class="btn btn-danger" style="color:white">Xoá</a>
             </td>
           </tr>
           </tbody>

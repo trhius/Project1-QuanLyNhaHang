@@ -41,16 +41,16 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .requestMatchers("/monans").authenticated()
-                .anyRequest().permitAll()
+        http.authorizeRequests().requestMatchers("/home").permitAll()
                 .and()
                 .formLogin()
-                .usernameParameter("userName")
-                .defaultSuccessUrl("/monans")
-                .permitAll()
-                .and()
-                .logout().logoutSuccessUrl("/").permitAll();
+                    .loginPage("/login")
+                    .usernameParameter("userName")
+                    .loginProcessingUrl("/login")
+                    .defaultSuccessUrl("/welcome")
+                    .permitAll()
+                    .and()
+                    .logout().logoutSuccessUrl("/home");
 
         return http.build();
     }

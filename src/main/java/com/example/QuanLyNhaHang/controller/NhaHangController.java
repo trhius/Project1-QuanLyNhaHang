@@ -69,18 +69,34 @@ public class NhaHangController {
         return "home";
     }
 
-    @GetMapping("/register")
+    @GetMapping("/signup")
     public String showRegisterForm(Model model){
         model.addAttribute("user", new User());
-        return "register_form";
+        return "signup";
     }
 
-    @PostMapping("/process_register")
+    @PostMapping("/process_signup")
     public String processRegister(User user){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         userRepository.save(user);
-        return "register_success";
+        return "redirect:/login";
     }
+
+    @GetMapping("/welcome")
+    public String viewTestMenu(){
+        return "welcome";
+    }
+
+    @GetMapping("/menu")
+    public String viewMenu(){
+        return "menu";
+    }
+
+    @GetMapping("/login")
+    public String viewLoginPage(){
+        return "login";
+    }
+
 }

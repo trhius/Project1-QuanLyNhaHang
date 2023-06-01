@@ -4,9 +4,12 @@ import com.example.QuanLyNhaHang.entity.CustomUserDetails;
 import com.example.QuanLyNhaHang.entity.User;
 import com.example.QuanLyNhaHang.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import java.util.Objects;
 
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -20,6 +23,9 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         }
         return new CustomUserDetails(user);
-
     }
+
+
+
+
 }

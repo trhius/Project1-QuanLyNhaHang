@@ -52,24 +52,32 @@
                 <div class="card-body">
                     <form th:action="@{/monans}" th:object="${monan}" method="post">
                         <div class="form-group">
-                            <label>Mã món ăn</label>
-                            <input class="form-control" type="text" name="maDoanVien" th:field="*{maMonAn}" placeholder="Nhập mã món ăn" required>
-                        </div>
-                        <div class="form-group">
                             <label>Tên món ăn</label>
                             <input class="form-control" type="text" name="tenMonAn" th:field="*{tenMonAn}" placeholder="Nhập tên món ăn" required>
                         </div>
                         <div class="form-group">
-                            <label>Loại món ăn</label>
-                            <input class="form-control" type="text" name="loaiMonAn" th:field="*{loaiMonAn}" placeholder="Nhập loại món ăn" required>
+                            <label>Mô tả</label>
+                            <input class="form-control" type="text" name="moTa" th:field="*{moTa}" placeholder="Mô tả" required>
                         </div>
                         <div class="form-group">
-                            <label>Đồ chay</label>
-                            <input class="form-control" type="text" name="doChay" th:field="*{doChay}" placeholder="Món ăn có phải đồ chay không?" required>
+                            <label>Nguyên liệu</label>
+                            <input class="form-control" type="text" name="nguyenLieu" th:field="*{nguyenLieu}" placeholder="Nguyên liệu" >
+                        </div>
+                        <div class="form-group">
+                            <label>Danh mục</label>
+                            <input class="form-control" type="text" name="danhMuc" th:field="*{danhMuc}" placeholder="Danh mục" required>
                         </div>
                         <div class="form-group">
                             <label>Đơn giá</label>
                             <input class="form-control" type="text" name="donGia" th:field="*{donGia}" placeholder="Nhập đơn giá" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Điểm đánh giá</label>
+                            <input class="form-control" type="text" name="diemDanhGia" th:field="*{diemDanhGia}" placeholder="Điêm đánh giá" >
+                        </div>
+                        <div class="form-group">
+                            <label>Note</label>
+                            <input class="form-control" type="text" name="note" th:field="*{note}" placeholder="Note" >
                         </div>
 
                         <div class="box-footer text-center">

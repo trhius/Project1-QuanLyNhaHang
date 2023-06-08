@@ -18,25 +18,23 @@ public class MonAn {
     private Long id;
 
     @Column
-    private String maMonAn;
-
-    @Column
     private String tenMonAn;
 
     @Column
-    private String loaiMonAn;
+    private String moTa;
 
     @Column
-    private String doChay;
+    private String nguyenLieu;
 
     @Column
-    private double donGia;
+    private String danhMuc;
 
-    public MonAn(String maMonAn, String tenMonAn, String loaiMonAn, String doChay, double donGia) {
-        this.maMonAn = maMonAn;
-        this.tenMonAn = tenMonAn;
-        this.loaiMonAn = loaiMonAn;
-        this.doChay = doChay;
-        this.donGia = donGia;
-    }
+    @Column
+    private long donGia;
+
+    @Column
+    private double diemDanhGia;
+
+    @Column
+    private String note;
 }

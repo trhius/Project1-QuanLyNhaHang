@@ -31,7 +31,7 @@ public class NhaHangController {
     @PostMapping("/monans")
     public String saveMonAn(@ModelAttribute("monan") MonAn monAn){
         nhaHangService.saveMonAn(monAn);
-        return "redirect:/monans";
+        return "redirect:/monans/new";
     }
 
     @GetMapping("/monans/edit/{id}")
@@ -40,20 +40,20 @@ public class NhaHangController {
         return "edit_monan";
     }
 
-    @PostMapping("/monans/edit/{id}")
-    public String updateMonAn(@PathVariable Long id, @ModelAttribute("monan") MonAn monAn, Model model){
-        MonAn existingMonAn = nhaHangService.getMonAnById(id);
-        existingMonAn.setId(id);
-        existingMonAn.setMaMonAn(monAn.getMaMonAn());
-        existingMonAn.setTenMonAn(monAn.getTenMonAn());
-        existingMonAn.setLoaiMonAn(monAn.getLoaiMonAn());
-        existingMonAn.setDoChay(monAn.getDoChay());
-        existingMonAn.setDonGia(monAn.getDonGia());
-
-        nhaHangService.updateMonAn(existingMonAn);
-
-        return "redirect:/monans";
-    }
+//    @PostMapping("/monans/edit/{id}")
+//    public String updateMonAn(@PathVariable Long id, @ModelAttribute("monan") MonAn monAn, Model model){
+//        MonAn existingMonAn = nhaHangService.getMonAnById(id);
+//        existingMonAn.setId(id);
+//        existingMonAn.setMaMonAn(monAn.getMaMonAn());
+//        existingMonAn.setTenMonAn(monAn.getTenMonAn());
+//        existingMonAn.setLoaiMonAn(monAn.getLoaiMonAn());
+//        existingMonAn.setDoChay(monAn.getDoChay());
+//        existingMonAn.setDonGia(monAn.getDonGia());
+//
+//        nhaHangService.updateMonAn(existingMonAn);
+//
+//        return "redirect:/monans";
+//    }
 
     @GetMapping("/monans/{id}")
     public String deleteMonAn(@PathVariable Long id){
@@ -90,7 +90,8 @@ public class NhaHangController {
     }
 
     @GetMapping("/menu")
-    public String viewMenu(){
+    public String viewMenu(Model model) {
+        model.addAttribute("monans", nhaHangService.getAllMonAn());
         return "menu";
     }
 

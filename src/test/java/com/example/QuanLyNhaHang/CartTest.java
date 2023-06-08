@@ -44,7 +44,7 @@ public class CartTest {
     @Test
     public void testGetCartItemByUser(){
         User user = new User();
-        user.setId(1L);
+        user.setId(2L);
 
         List<CartItem> cartItems = cartRepo.findByUser(user);
 

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Menu</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+body, html {height: 100%}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top w3-hide-small">
+  <div class="w3-bar w3-xlarge w3-black w3-hover-opacity-off" id="myNavbar">
+    <a th:href="@{/welcome}" class="w3-bar-item w3-button">HOME</a>
+    <a th:href="@{/menu}" class="w3-bar-item w3-button">MENU</a>
+    <a th:href="@{/about}" class="w3-bar-item w3-button">ABOUT</a>
+    <a th:href="@{/contact}" class="w3-bar-item w3-button">CONTACT</a>
+    <a th:href="@{/logout}" class="w3-bar-item w3-button">LOGOUT</a>
+    <a th:href="@{/cart}" class="w3-bar-item w3-button w3-right"><i class="fa fa-shopping-cart w3-padding" style="font-size:24px"></i> <span id="count">0</span></a>
+  </div>
+</div>
+
+
+<div class="w3-container w3-light-grey w3-padding-64 w3-xxlarge" id="menu">
+  <div class="w3-content">
+
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:48px">THE MENU</h1>
+    <div class="w3-row w3-center w3-border w3-dark-grey w3-border-dark-grey">
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Starters&Snacks');" id="myLink">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red ">Starters & Snacks</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Tacos');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Tacos</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Burritos&Bowl');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Burritos & Bowls</div>
+      </a>
+
+    </div>
+
+
+
+    <div id="Starters&Snacks" class="w3-container menu w3-padding-32 w3-border-left w3-border-right w3-border-bottom w3-border-dark-grey w3-white">
+<!--      <h1><b>Nachos Large</b> <span class="w3-right w3-tag w3-dark-grey w3-round">130,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Corn chips with queso, black bean, pico de galo, pickled chillies, sour cream, pickled onions, and green onion</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Quesadilla</b> <span class="w3-tag w3-grey w3-round">Popular</span> <span class="w3-right w3-tag w3-dark-grey w3-round">150,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Large flour tortilla, filled with melted cheese, pico de gallo, and green onion</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Chilli Poppers</b> <span class="w3-right w3-tag w3-dark-grey w3-round">110,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">5 crispy cream cheese and chilli fritters. Served with a cream dill sauce</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Chips And Queso</b> <span class="w3-right w3-tag w3-dark-grey w3-round">125,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Melted cheese dip with stewed tomato and green chilli, served with a side of corn chips for dipping</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Esquites</b> <span class="w3-tag w3-red w3-round">Hot!</span><span class="w3-right w3-tag w3-dark-grey w3-round">110,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Grilled sweetcorn salad with chipotle, aioli, parmesan cheese, and lime. Served with handmade corn chips for dipping</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Chips And Guacamole</b> <span class="w3-tag w3-grey w3-round">New</span><span class="w3-right w3-tag w3-dark-grey w3-round">110,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Dip made from avocado, tomato, onion, and cilantro. Served with a side of corn chips for dipping</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+      <div th:each="monan: ${monans}" th:if="${monan.danhMuc=='Starter&Snacks'}">
+        <h1><b th:text="${monan.tenMonAn}"></b> <span th:text="${monan.note}" class="w3-tag w3-red w3-round"></span>
+            <span class="w3-right w3-tag w3-dark-grey w3-round" th:text="${#numbers.formatInteger(monan.donGia,3,'COMMA')} + 'VND' "></span></h1>
+        <p th:text="${monan.moTa}" class="w3-text-dark-grey" ></p>
+          <p><a th:href="@{/cart/add/{monAnId}(monAnId=${monan.id})}" class="w3-button w3-light-grey w3-border w3-border-dark-grey w3-padding-small w3-round">Add to Cart</a></p>
+        <hr>
+      </div>
+    </div>
+
+
+    <div id="Tacos" class="w3-container menu w3-padding-32 w3-border-left w3-border-right w3-border-bottom w3-border-dark-grey w3-white">
+<!--      <h1><b>Beef</b> <span class="w3-tag w3-grey w3-round">Popular</span> <span class="w3-right w3-tag w3-dark-grey w3-round">60,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Braised beef served with cilantro and onions</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Chipotle Chicken Taco</b> <span class="w3-right w3-tag w3-dark-grey w3-round">60,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Chicken cooked in a smoky chipotle and garlic sauce</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Carnitas</b> <span class="w3-right w3-tag w3-dark-grey w3-round">60,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Pork slow cooked with cumin, oregano, and citrus. Served with cilantro and onions</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Bean And Cheese</b> <span class="w3-right w3-tag w3-dark-grey w3-round">50,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Refried beans, cheese, and crispy onions</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Pumpkin And Black Bean</b> <span class="w3-right w3-tag w3-dark-grey w3-round">50,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Garlicky caramelized pumpkin, refried beans, crispy onions, pickled red onion, and cilantro</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+      <div th:each="monan: ${monans}" th:if="${monan.danhMuc=='Tacos'}">
+        <h1><b th:text="${monan.tenMonAn}"></b> <span th:text="${monan.note}" class="w3-tag w3-red w3-round"></span>
+            <span class="w3-right w3-tag w3-dark-grey w3-round" th:text="${#numbers.formatInteger(monan.donGia,3,'COMMA')} + 'VND' "></span></h1>
+        <p th:text="${monan.moTa}" class="w3-text-dark-grey" ></p>
+          <p><a th:href="@{/cart/add/{monAnId}(monAnId=${monan.id})}" class="w3-button w3-light-grey w3-border w3-border-dark-grey w3-padding-small w3-round">Add to Cart</a></p>
+        <hr>
+      </div>
+    </div>
+
+
+    <div id="Burritos&Bowl" class="w3-container menu w3-padding-32 w3-border-left w3-border-right w3-border-bottom w3-border-dark-grey w3-white">
+<!--      <h1><b>Today's Soup</b> <span class="w3-tag w3-grey w3-round">Seasonal</span><span class="w3-right w3-tag w3-dark-grey w3-round">90,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Ask the waiter</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Burrito</b> <span class="w3-tag w3-grey w3-round">Popular</span> <span class="w3-right w3-tag w3-dark-grey w3-round">200,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Your choice of filling wrapped in a large handmae flour tortilla with rice, pico de gallo, lettuce, sour cream, crispy onions, and cilantro</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Naked Burrito Bowl</b> <span class="w3-right w3-tag w3-dark-grey w3-round">170,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Mexican rice bowl topped with your choice of filling, pico de gallo, lettuce, sour cream, crispy onions, and cilantro</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Chimichanga</b> <span class="w3-right w3-tag w3-dark-grey w3-round">180,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Deep fried burrito stuffed with your choice of filling, refried beans, cheese, and rice. Served with tomato salsa and sour cream</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Salad Bowl</b> <span class="w3-right w3-tag w3-dark-grey w3-round">170,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">Mixed salad green topped with your choice of filling, pico de gallo, sour cream, crispy onions, and cilantro</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+<!--      <hr>-->
+<!--      <h1><b>Enchiladas</b> <span class="w3-tag w3-red w3-round">Family Size</span> <span class="w3-right w3-tag w3-dark-grey w3-round">210,000VND</span></h1>-->
+<!--      <p class="w3-text-dark-grey">3 stuffed corn tortillas smothered in red South Texas style enchilada sauce. Served with rice, refried black beans, and salad</p>-->
+<!--      <p ><button>Add to Cart</button></p>-->
+      <div th:each="monan: ${monans}" th:if="${monan.danhMuc=='Burritos&Bowl'}">
+        <h1><b th:text="${monan.tenMonAn}"></b> <span th:text="${monan.note}" class="w3-tag w3-red w3-round"></span>
+            <span class="w3-right w3-tag w3-dark-grey w3-round" th:text="${#numbers.formatInteger(monan.donGia,3,'COMMA')} + 'VND' "></span></h1>
+        <p th:text="${monan.moTa}" class="w3-text-dark-grey" ></p>
+          <p><a th:href="@{/cart/add/{monAnId}(monAnId=${monan.id})}" class="w3-button w3-light-grey w3-border w3-border-dark-grey w3-padding-small w3-round">Add to Cart</a></p>
+        <hr>
+      </div>
+    </div><br>
+
+</body>
+
+<script>
+// Tabbed Menu
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+     tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-red";
+}
+document.getElementById("myLink").click();
+</script>
+
+</html>
